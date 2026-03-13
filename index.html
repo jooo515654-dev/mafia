@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تسجيل الدخول</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background: #ffffff;
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            color: #fff;
+        }
+        .login-container {
+            background: #d5cfcf;
+            padding: 2rem;
+            border-radius: 8px;
+            border: 1px solid #333;
+            width: 90%;
+            max-width: 350px;
+            text-align: center;
+        }
+        h2 {
+            color: #000000;
+            margin-bottom: 1.5rem;
+            font-weight: normal;
+            letter-spacing: 1px;
+        }
+        input {
+            width: 100%;
+            padding: 12px;
+            background: #2a2a2a;
+            border: 1px solid #444;
+            border-radius: 4px;
+            color: #f2f2f2;
+            font-size: 1.1rem;
+            text-align: center;
+            margin-bottom: 1rem;
+            outline: none;
+        }
+        input:focus {
+            border-color: #8b0000;
+        }
+        button {
+            background: #000000;
+            color: #ffffff;
+            border: none;
+            padding: 12px 30px;
+            font-size: 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            transition: 0.3s;
+        }
+        button:hover {
+            background: #e3b9b9;
+        }
+        .error {
+            color: #ff0000;
+            margin-top: 0.5rem;
+            font-size: 0.9rem;
+            height: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h2> الدخول إلى المحتوى</h2>
+        <input type="password" id="passwordInput" placeholder="أدخل كلمة المرور" autofocus>
+        <button onclick="checkPassword()">دخول</button>
+        <div class="error" id="errorMessage"></div>
+    </div>
+
+    <script>
+        function checkPassword() {
+            const password = document.getElementById('passwordInput').value;
+            if (password === '75523453223') {
+                // تخزين أن المستوثق منه
+                sessionStorage.setItem('mafiaAuth', 'true');
+                window.location.href = 'main.html';
+            } else {
+                document.getElementById('errorMessage').innerText = '❌ كلمة المرور غير صحيحة';
+            }
+        }
+
+        // السماح بالدخول بالضغط على Enter
+        document.getElementById('passwordInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                checkPassword();
+            }
+        });
+
+          (function() {
+            // قائمة بكل اختصارات التفتيش المعروفة
+            const blockKeys = [
+                'F12', 'I', 'i', 'U', 'u', 'C', 'c', 'J', 'j', 'S', 's',
+                'F5', 'R', 'r', 'F11', 'F3', 'P', 'p', 'K', 'k'
+            ];
+            
+            // منع النقر باليمين
+            document.addEventListener('contextmenu', function(e) {
+                e.preventDefault();
+                window.location.replace('about:blank');
+                document.body.innerHTML = '';
+                throw new Error('Access Denied');
+            });
+
+            // مراقبة اختصارات لوحة المفاتيح
+            document.addEventListener('keydown', function(e) {
+                // التحقق من Ctrl, Shift, Cmd
+                const isCtrl = e.ctrlKey || e.metaKey;
+                const isShift = e.shiftKey;
+                const key = e.key;
+                
+                // قائمة الشروط الممنوعة
+                if (
+                    (isCtrl && isShift && (key === 'I' || key === 'i' || key === 'J' || key === 'j' || key === 'C' || key === 'c')) || // Ctrl+Shift+I/J/C
+                    (isCtrl && (key === 'U' || key === 'u' || key === 'S' || key === 's' || key === 'F5' || key === 'r' || key === 'R')) || // Ctrl+U/S/F5/R
+                    (key === 'F12') || // F12
+                    (isShift && key === 'F5') // Shift+F5
+                ) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    window.location.replace('about:blank');
+                    document.body.innerHTML = '';
+                    throw new Error('Access Denied');
+                }
+            });
+
+            // كشف أدوات المطور (طريقة متقدمة)
+            setInterval(function() {
+                const before = new Date();
+                debugger; // هذا يسبب توقف مؤقت إذا كانت الأدوات مفتوحة
+                const after = new Date();
+                if (after - before > 100) { // إذا كان الفرق كبير، يعني الأدوات مفتوحة
+                    window.location.replace('about:blank');
+                    document.body.innerHTML = '';
+                }
+            }, 1000);
+
+            // منع السحب والإفلات للمحتوى
+            document.addEventListener('dragstart', function(e) {
+                e.preventDefault();
+                return false;
+            });
+
+            // منع تحديد النص
+            document.addEventListener('selectstart', function(e) {
+                e.preventDefault();
+                return false;
+            });
+
+            // مسح أي محاولة لاستخدام console.log
+            Object.defineProperty(window, 'console', {
+                get: function() {
+                    window.location.replace('about:blank');
+                    document.body.innerHTML = '';
+                    throw new Error('Console is disabled');
+                },
+                set: function() {}
+            });
+
+            // مسح أي محاولة لاستخدام eval
+            window.eval = function() {
+                window.location.replace('about:blank');
+                document.body.innerHTML = '';
+            };
+        })();
+
+        // ================================================
+        // 3. بيانات البوستات (ثابتة بدون كوفر)
+        // ================================================
+      
+        // ================================================
+        // 4. دالة عرض البوستات (بدون كوفر)
+        // ================================================
+        function displayPosts(posts) {
+            const container = document.getElementById('postsContainer');
+            if (!container) return;
+            container.innerHTML = '';
+
+            posts.forEach(post => {
+                const card = document.createElement('div');
+                card.className = `post-card ${post.type}`;
+
+                if (post.type === 'video') {
+                    card.innerHTML = `
+                        <div class="video-wrapper">
+                            <video controls poster="${post.thumbnail}">
+                                <source src="${post.videoUrl}" type="video/mp4">
+                            </video>
+                        </div>
+                        <div class="post-content">
+                            <h3 class="post-title">${post.title}</h3>
+                            <p class="post-description">${post.description}</p>
+                            <div class="video-stats">
+                                <span><i class="fas fa-eye"></i> ${post.views}</span>
+                                <span><i class="fas fa-clock"></i> ${post.duration}</span>
+                                <span><i class="fas fa-calendar-alt"></i> ${post.date}</span>
+                            </div>
+                        </div>
+                    `;
+                } else if (post.type === 'photo') {
+                    card.innerHTML = `
+                        <div class="photo-wrapper">
+                            <img src="${post.imageUrl}" alt="${post.title}" loading="lazy">
+                        </div>
+                        <div class="post-content">
+                            <h3 class="post-title">${post.title}</h3>
+                            <p class="post-description">${post.description}</p>
+                            <div class="post-meta">
+                                <span class="post-category"><i class="fas fa-map-marker-alt"></i> ${post.location}</span>
+                                <span>${post.date}</span>
+                            </div>
+                        </div>
+                    `;
+                } else if (post.type === 'text') {
+                    card.innerHTML = `
+                        <div class="text-content">
+                            <div class="blood-quote">${post.quote}</div>
+                            <div class="blood-author">${post.author}</div>
+                            <div style="color:#666; margin-top:1rem; font-size:0.8rem;">
+                                <i class="fas fa-book-open"></i> ${post.context} | ${post.date}
+                            </div>
+                        </div>
+                    `;
+                }
+                container.appendChild(card);
+            });
+        }
+
+        // ================================================
+        // 5. دالة الفلترة
+        // ================================================
+        function filterPosts(type) {
+            if (type === 'all') {
+                displayPosts(postsData);
+            } else {
+                displayPosts(postsData.filter(p => p.type === type));
+            }
+
+            // تحديث الأزرار
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.filter === type);
+            });
+        }
+
+        // ================================================
+        // 6. تشغيل الصوت عند التفاعل الأول للمستخدم
+        // ================================================
+        function initAudio() {
+            const audio = document.getElementById('backgroundSound');
+            if (audio) {
+                audio.volume = 0.5; // مستوى الصوت 50%
+                audio.play().catch(e => {
+                    // المتصفح منع التشغيل التلقائي، ننتظر تفاعل المستخدم
+                    document.addEventListener('click', function once() {
+                        audio.play();
+                        document.removeEventListener('click', once);
+                    });
+                });
+            }
+        }
+
+        // ================================================
+        // 7. تشغيل كل شيء عند تحميل الصفحة
+        // ================================================
+        document.addEventListener('DOMContentLoaded', () => {
+            // عرض البوستات
+            displayPosts(postsData);
+            
+            // إعداد أزرار الفلترة
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    filterPosts(e.target.dataset.filter);
+                });
+            });
+
+            // تشغيل الصوت
+            initAudio();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,502 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #000000;
+    font-family: 'Roboto', sans-serif;
+    color: #e0e0e0;
+    line-height: 1.6;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* تأثير الدماء المتساقطة في الخلفية */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(
+        0deg,
+        rgba(139, 0, 0, 0.02) 0px,
+        rgba(0, 0, 0, 0.9) 1px,
+        transparent 2px
+    );
+    pointer-events: none;
+    z-index: 9999;
+    animation: bloodRain 20s linear infinite;
+}
+
+@keyframes bloodRain {
+    0% { background-position: 0 0; }
+    100% { background-position: 0 20px; }
+}
+
+/* تأثير بصمات الأيدي الدموية */
+body::after {
+    content: '';
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    width: 300px;
+    height: 300px;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" opacity="0.1"><path fill="%238b0000" d="M50 10 Q60 20 70 15 Q80 10 85 20 Q90 30 80 40 Q70 50 60 45 Q50 40 40 45 Q30 50 20 40 Q10 30 15 20 Q20 10 30 15 Q40 20 50 10 Z"/></svg>');
+    background-size: cover;
+    opacity: 0.1;
+    pointer-events: none;
+    z-index: 9998;
+}
+
+/* Header متطور وأكثر رعباً */
+.mafia-header {
+    background: linear-gradient(180deg, #1a0000 0%, #0a0000 100%);
+    padding: 1rem 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 3px solid #8b0000;
+    box-shadow: 0 0 30px rgba(139, 0, 0, 0.5);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    backdrop-filter: blur(10px);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    position: relative;
+}
+
+.logo i {
+    font-size: 2.5rem;
+    color: #8b0000;
+    filter: drop-shadow(0 0 10px #ff0000);
+    animation: heartbeat 1.5s ease-in-out infinite;
+}
+
+@keyframes heartbeat {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); text-shadow: 0 0 30px #ff0000; }
+}
+
+.logo h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 900;
+    color: #fff;
+    letter-spacing: 3px;
+    text-shadow: 3px 3px 0 #8b0000, 5px 5px 10px rgba(0,0,0,0.8);
+}
+
+/* Banner مرعب */
+.mafia-banner {
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(139, 0, 0, 0.3)),
+                url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.mafia-banner::before {
+    content: '⚰️ ☠️ 💀';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 15rem;
+    opacity: 0.03;
+    white-space: nowrap;
+    animation: rotateSkull 20s linear infinite;
+}
+
+@keyframes rotateSkull {
+    from { transform: translate(-50%, -50%) rotate(0deg); }
+    to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+.banner-content h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 4rem;
+    color: #fff;
+    margin-bottom: 1rem;
+    text-shadow: 0 0 20px #8b0000, 2px 2px 4px #000;
+    animation: glitch 3s infinite;
+}
+
+@keyframes glitch {
+    0%, 100% { transform: skew(0deg); }
+    95% { transform: skew(0deg); }
+    96% { transform: skew(10deg); text-shadow: -5px 0 #ff0000; }
+    97% { transform: skew(-10deg); text-shadow: 5px 0 #8b0000; }
+    98% { transform: skew(5deg); }
+    99% { transform: skew(-5deg); }
+}
+
+/* Posts Container */
+.posts-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    gap: 2rem;
+    padding: 2rem 5%;
+    background: #0a0000;
+    position: relative;
+}
+
+/* البوستات الثلاثة أنماط */
+
+/* 1. بوست الفيديو (نمط يوتيوب) */
+.post-card.video {
+    background: #100000;
+    border: 2px solid #8b0000;
+    box-shadow: 0 0 30px rgba(139, 0, 0, 0.3);
+}
+
+.video-wrapper {
+    position: relative;
+    width: 100%;
+    padding-top: 56.25%; /* نسبة 16:9 */
+    background: #000;
+    border-bottom: 3px solid #8b0000;
+}
+
+.video-wrapper video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    cursor: pointer;
+}
+
+/* تخصيص عناصر تحكم الفيديو */
+video::-webkit-media-controls-panel {
+    background: linear-gradient(180deg, #8b0000 0%, #4a0000 100%);
+}
+
+video::-webkit-media-controls-play-button {
+    background-color: #8b0000;
+    border-radius: 50%;
+}
+
+.video-title-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(transparent, rgba(139, 0, 0, 0.9));
+    padding: 1rem;
+    color: white;
+    font-weight: bold;
+    transform: translateY(100%);
+    transition: transform 0.3s;
+}
+
+.video-wrapper:hover .video-title-overlay {
+    transform: translateY(0);
+}
+
+.video-stats {
+    display: flex;
+    gap: 1rem;
+    padding: 0.5rem 1rem;
+    background: #1a0000;
+    color: #8b0000;
+    font-size: 0.9rem;
+}
+
+/* 2. بوست الصورة */
+.post-card.photo {
+    background: #150000;
+    border: 2px solid #8b0000;
+    position: relative;
+    overflow: hidden;
+}
+
+.photo-wrapper {
+    width: 100%;
+    height: 300px;
+    overflow: hidden;
+    position: relative;
+    border-bottom: 3px solid #8b0000;
+}
+
+.photo-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 5s;
+}
+
+.post-card.photo:hover .photo-wrapper img {
+    transform: scale(1.2);
+}
+
+.photo-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(139,0,0,0.3), rgba(0,0,0,0.8));
+    opacity: 0;
+    transition: opacity 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.post-card.photo:hover .photo-overlay {
+    opacity: 1;
+}
+
+.photo-overlay i {
+    font-size: 4rem;
+    color: white;
+    text-shadow: 0 0 20px #8b0000;
+    animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+/* 3. بوست النص فقط */
+.post-card.text {
+    background: #0a0000;
+    border: 2px solid #8b0000;
+    min-height: 300px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.post-card.text::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent 10px,
+        rgba(139, 0, 0, 0.03) 10px,
+        rgba(139, 0, 0, 0.03) 20px
+    );
+    animation: moveStripes 20s linear infinite;
+}
+
+@keyframes moveStripes {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.text-content {
+    position: relative;
+    z-index: 1;
+    padding: 2rem;
+    text-align: center;
+}
+
+.blood-quote {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    color: #fff;
+    line-height: 1.8;
+    position: relative;
+    margin-bottom: 2rem;
+}
+
+.blood-quote::before,
+.blood-quote::after {
+    content: '☠️';
+    font-size: 2rem;
+    color: #8b0000;
+    opacity: 0.5;
+    margin: 0 1rem;
+}
+
+.blood-author {
+    color: #8b0000;
+    font-size: 1.2rem;
+    font-weight: bold;
+    letter-spacing: 2px;
+    border-top: 2px dashed #8b0000;
+    border-bottom: 2px dashed #8b0000;
+    padding: 0.5rem;
+    display: inline-block;
+}
+
+/* تحسين عام للبوستات */
+.post-card {
+    border-radius: 10px;
+    overflow: hidden;
+    transition: all 0.3s;
+    position: relative;
+}
+
+.post-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    box-shadow: inset 0 0 50px rgba(139, 0, 0, 0.2);
+    pointer-events: none;
+    border-radius: 10px;
+}
+
+.post-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(139, 0, 0, 0.4);
+    border-color: #ff0000;
+}
+
+/* الفلترة */
+.filter-section {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    padding: 2rem;
+    background: linear-gradient(180deg, #0a0000 0%, #1a0000 100%);
+    border-top: 2px solid #8b0000;
+    border-bottom: 2px solid #8b0000;
+}
+
+.filter-btn {
+    background: transparent;
+    color: #e0e0e0;
+    border: 2px solid #8b0000;
+    padding: 1rem 2.5rem;
+    font-size: 1.1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    border-radius: 0;
+    cursor: pointer;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+}
+
+.filter-btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    width: 100%;
+    height: 100%;
+    background: #8b0000;
+    border-radius: 0;
+    transition: transform 0.3s;
+    z-index: -1;
+}
+
+.filter-btn:hover::before,
+.filter-btn.active::before {
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.filter-btn:hover,
+.filter-btn.active {
+    color: #fff;
+    border-color: #ff0000;
+    box-shadow: 0 0 30px rgba(139, 0, 0, 0.5);
+}
+
+/* تأثير الصوت الوهمي */
+.sound-wave {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    display: flex;
+    gap: 3px;
+    align-items: flex-end;
+    height: 30px;
+    z-index: 10000;
+    opacity: 0.5;
+}
+
+.sound-wave span {
+    width: 3px;
+    height: 100%;
+    background: #8b0000;
+    animation: soundWave 1s ease-in-out infinite;
+}
+
+.sound-wave span:nth-child(2) { animation-delay: 0.2s; height: 70%; }
+.sound-wave span:nth-child(3) { animation-delay: 0.4s; height: 40%; }
+.sound-wave span:nth-child(4) { animation-delay: 0.6s; height: 90%; }
+.sound-wave span:nth-child(5) { animation-delay: 0.8s; height: 60%; }
+
+@keyframes soundWave {
+    0%, 100% { transform: scaleY(1); }
+    50% { transform: scaleY(1.5); background: #ff0000; }
+}
+
+/* Footer مرعب */
+.mafia-footer {
+    background: #050000;
+    padding: 3rem;
+    text-align: center;
+    border-top: 3px solid #8b0000;
+    position: relative;
+    overflow: hidden;
+}
+
+.mafia-footer::before {
+    content: '⚰️⚰️⚰️';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 3rem;
+    opacity: 0.1;
+    white-space: nowrap;
+    animation: moveSkulls 10s linear infinite;
+}
+
+@keyframes moveSkulls {
+    from { transform: translateX(-50%) translateY(0); }
+    to { transform: translateX(-50%) translateY(-20px); }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .posts-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .filter-section {
+        flex-wrap: wrap;
+    }
+    
+    .filter-btn {
+        flex: 1 1 auto;
+        min-width: 150px;
+    }
+    
+    .banner-content h2 {
+        font-size: 2rem;
+    }
+}
